@@ -47,10 +47,13 @@ function touch_layer:start(context)
   if sol.main.get_os() == "iOS" then
     local virtual_buttons = require("menus/virtual_button")
     for _, button in pairs(buttons) do
+      button.surface:set_opacity(90)
       button.menu = virtual_buttons.create(button)
       sol.menu.start(context, button.menu)
     end
 
+	joystick.background_surface:set_opacity(90)
+	joystick.stick_surface:set_opacity(90)
     joystick.menu = require("menus/virtual_joystick")
     sol.menu.start(context, joystick.menu)
     joystick.menu:create(joystick)
