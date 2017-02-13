@@ -1,24 +1,36 @@
--- Touchable .
+-- Touchable layer.
 local touch_layer = {}
 
 local buttons = {
     item_1 = {
         surface = sol.surface.create("touch/icon_item_1.png"),
-        x = 268,
+        x = 232,
         y = 225,
         command = "item_1",
     },
-    attack = {
-        surface = sol.surface.create("touch/icon_attack.png"),
-        x = 305,
+    pause = {
+        surface = sol.surface.create("touch/icon_pause.png"),
+        x = 250,
+        y = 200,
+        command = "pause",
+    },
+    item_2 = {
+        surface = sol.surface.create("touch/icon_item_2.png"),
+        x = 268,
         y = 225,
-        command = "attack",
+        command = "item_2",
     },
     action = {
         surface = sol.surface.create("touch/icon_action.png"),
         x = 286,
         y = 200,
         command = "action",
+    },
+    attack = {
+        surface = sol.surface.create("touch/icon_attack.png"),
+        x = 304,
+        y = 225,
+        command = "attack",
     },
 }
 
@@ -28,6 +40,7 @@ local joystick = {
   x = 35,
   y = 205
 }
+
 
 function touch_layer:start(context)
 
