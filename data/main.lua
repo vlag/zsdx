@@ -25,27 +25,35 @@ function sol.main:on_started()
   local title_screen = require("menus/title")
   local savegame_menu = require("menus/savegames")
 
+
+  -- Touchscreen layer.
+  touch_layer = require("scripts/touch_layer")
+  touch_layer:start(self)
+
   -- Show the Solarus logo first.
   sol.menu.start(self, solarus_logo)
 
   -- Then the language selection menu, unless a game was started by a debug key.
   solarus_logo.on_finished = function()
     if self.game == nil then
-      sol.menu.start(self, language_menu)
+      sol.menu.start(self, language_menu, false)
+      touch_layer:set_callback_context(language_menu)
     end
   end
 
   -- Then the title screen.
   language_menu.on_finished = function()
     if self.game == nil then
-      sol.menu.start(self, title_screen)
+      sol.menu.start(self, title_screen, false)
+      touch_layer:set_callback_context(title_screen)
     end
   end
 
   -- Then the savegame menu.
   title_screen.on_finished = function()
     if self.game == nil then
-      sol.menu.start(self, savegame_menu)
+      sol.menu.start(self, savegame_menu, false)
+      touch_layer:set_callback_context(savegame_menu)
     end
   end
 end
@@ -237,6 +245,7 @@ function sol.main:start_savegame(game)
 
   local play_game = require("play_game")
   play_game(game)
+  touch_layer:set_game(game)
 end
 
 -- Returns the font and size to be used for dialogs
